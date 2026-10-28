@@ -1,5 +1,6 @@
 # NebiusXNvidia26-AICIRA
 
+Title:
 Adaptive Multi-Fidelity Identification of Critical Localized Imperfections in Axially Compressed Rocket Airframes
 
 # Architecture 
