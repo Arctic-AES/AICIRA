@@ -2,6 +2,8 @@
 
 Adaptive Multi-Fidelity Identification of Critical Localized Imperfections in Axially Compressed Rocket Airframes
 
+# Architecture 
+
 1. Physics Engine
 
 Classical shell theory · Geometry · Analytical validation
