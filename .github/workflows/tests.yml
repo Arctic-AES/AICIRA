@@ -17,8 +17,8 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install package
-        run: python -m pip install -e .
+        run: python -m pip install -e software
       - name: Unit tests
-        run: python -m unittest discover -s tests -v
+        run: python -m unittest discover -s software/tests -v
       - name: Analytical sanity check
         run: python -m aicira baseline

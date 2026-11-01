@@ -25,7 +25,7 @@ from OCP.ShapeAnalysis import ShapeAnalysis_FreeBounds
 from OCP.STEPControl import STEPControl_Writer, STEPControl_Reader, STEPControl_AsIs
 from OCP.IFSelect import IFSelect_RetDone
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]
 TOL = 1e-5
 
 def array(values, cls):
@@ -62,7 +62,7 @@ def generate(name, depth, width):
     sewing = BRepBuilderAPI_Sewing(1e-6); sewing.Add(face); sewing.Perform()
     shape = sewing.SewedShape()
     assert BRepCheck_Analyzer(shape).IsValid()
-    path = ROOT/'geometry'/name; path.parent.mkdir(parents=True,exist_ok=True)
+    path = ROOT/'generated'/'geometry'/name; path.parent.mkdir(parents=True,exist_ok=True)
     writer=STEPControl_Writer(); writer.Transfer(shape,STEPControl_AsIs)
     assert writer.Write(str(path)) == IFSelect_RetDone
     reader=STEPControl_Reader(); assert reader.ReadFile(str(path)) == IFSelect_RetDone
@@ -97,4 +97,5 @@ def generate(name, depth, width):
 
 if __name__=='__main__':
     reports=[generate('perfect_cylinder.step',0,20),generate('gaussian_baseline.step',.04,20)]
-    (ROOT/'verification'/'geometry.json').write_text(json.dumps(reports,indent=2))
+    (ROOT/'generated'/'verification').mkdir(parents=True,exist_ok=True)
+    (ROOT/'generated'/'verification'/'geometry.json').write_text(json.dumps(reports,indent=2))
