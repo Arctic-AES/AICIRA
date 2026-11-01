@@ -8,6 +8,28 @@
 
 **Nonlinear static (both cylinders):** Bottom rim fixed; top rim UX = UY = 0, top UZ ramps from 0 to −1.6 mm, top rotations free. Large Deflection ON; use identical end conditions and comparable meshes. Extract converged reaction-force histories.
 
-**Current blocker:** Both newer nonlinear runs stopped near 1.34 mm with excessive element distortion. Use a *copy* of the baseline for solver diagnostics, starting with `software/ansys/diagnostic_controls.mac`. Check that iteration and stepping controls actually appear in Solver Output. If failure persists, locate the distorted elements and examine the equilibrium path. Numerical controls are diagnostic, not guaranteed fixes.
+## Solver diagnostics
 
-**Data:** Keep the native Workbench files outside Git. Export `shortening_mm,top_compression_N` (optional `time`) for Python screening; an incomplete history is not a verified peak load.
+The newer nonlinear runs stopped near 1.34 mm with excessive element distortion. Work with **copies** of the baseline analyses, leaving the geometry, material, loads, and boundary conditions unchanged.
+
+Start with automatic time stepping (initial 200, minimum 200, maximum 20,000 substeps), full Newton–Raphson, up to 50 equilibrium iterations, predictor OFF, and stabilization OFF. These controls are diagnostic, not guaranteed fixes.
+
+If needed, enter the following in an ANSYS Mechanical Commands object attached to the **nonlinear analysis**. Keep the Analysis Settings and Commands object consistent; do not specify conflicting time-step controls in both places.
+
+```apdl
+/SOLU
+NLGEOM,ON
+AUTOTS,ON
+NSUBST,200,20000,200
+NROPT,FULL
+NEQIT,50
+PRED,OFF
+LNSRCH,AUTO
+STABILIZE,OFF
+EQSLV,SPARSE
+OUTRES,ALL,ALL
+```
+
+Confirm that the intended iteration limit, step limits, and predictor setting are reflected in Solver Output. If the analysis still fails, locate the distorted elements and inspect the last converged deformation rather than changing physical parameters merely to force convergence.
+
+**Data:** Keep native Workbench files outside Git. Export `shortening_mm,top_compression_N` (optional `time`) for Python screening. An incomplete history is not a verified peak load.
