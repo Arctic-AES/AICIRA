@@ -1,26 +1,20 @@
 # AICIRA
 
-**Adaptive Multi-Fidelity Identification of Critical Localized Imperfections in Axially Compressed Rocket Airframes**
+*Adaptive Multi-Fidelity Identification of Critical Localized Imperfections in Axially Compressed Rocket Airframes*
 
-AICIRA studies how localized dents affect cylindrical-shell buckling and, eventually, how to identify critical imperfections with fewer nonlinear simulations.
+AICIRA investigates how localized geometric imperfections affect the axial buckling of thin-walled rocket airframes. The long-term objective is to identify critical imperfections using fewer expensive nonlinear finite element simulations.
 
-- **[`documentation/`](documentation/)** — Current simulation baseline, assessments, and Workbench notes.
-- **[`software/`](software/)** — Geometry generation, physics calculations, FEA-data screening, and tests. Machine learning and frontend code will be added here when implemented.
+## Architecture
 
-## Run the baseline
+1. **Physics Engine** — Classical shell theory, geometry, analytical validation.
+2. **FEA Data Processing** — ANSYS results, critical loads, mesh convergence.
+3. **Multi-Fidelity Surrogate** *(planned)* — Model relationships between imperfections and buckling capacity.
+4. **Adaptive Experiment Selection** *(planned)* — Identify which imperfection configurations deserve further simulation.
+5. **Nemotron Agent + Visualization** *(planned)* — Orchestrate verified tools, communicate uncertainty, and present results.
 
-```bash
-cd software
-python -m pip install -e .
-python -m aicira baseline
-python -m aicira cases --output generated/cases.csv
-python -m unittest discover -s tests -v
-```
+## Repository
 
-Generate the perfect and 12 dented STEP midsurfaces (requires OCP, NumPy, SciPy):
+- **[`documentation/`](documentation/)** — Simulation baselines, assessments, and Workbench notes.
+- **[`software/`](software/)** — Geometry generation, physics calculations, and FEA data processing; future ML and frontend development.
 
-```bash
-python geometry/generate_all_dents.py
-```
-
-**Current limitation:** Linear static and eigenvalue analyses exist; matched nonlinear collapse loads are not yet established. See [`documentation/BASELINE.md`](documentation/BASELINE.md).
+**Current stage:** Analytical and linear buckling baselines are available. Matched nonlinear buckling loads and adaptive-model performance remain to be established.
