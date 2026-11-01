@@ -2,7 +2,7 @@
 
 *Adaptive Multi-Fidelity Identification of Critical Localized Imperfections in Axially Compressed Rocket Airframes*
 
-AICIRA investigates how localized geometric imperfections affect the axial buckling of thin-walled rocket airframes. The long-term objective is to identify critical imperfections using fewer expensive nonlinear finite element simulations.
+A small dent can change how a thin rocket airframe buckles. AICIRA studies that effect through shell mechanics and ANSYS simulations, with the goal of finding the most critical imperfections without having to simulate every possible dent.
 
 ## Architecture
 
@@ -17,4 +17,3 @@ AICIRA investigates how localized geometric imperfections affect the axial buckl
 - **[`documentation/`](documentation/)** — Simulation baselines, assessments, and Workbench notes.
 - **[`software/`](software/)** — Geometry generation, physics calculations, and FEA data processing; future ML and frontend development.
 
-**Current stage:** Analytical and linear buckling baselines are available. Matched nonlinear buckling loads and adaptive-model performance remain to be established.
