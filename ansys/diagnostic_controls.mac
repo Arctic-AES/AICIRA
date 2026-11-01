@@ -1,0 +1,15 @@
+! AICIRA nonlinear baseline diagnostic controls; ANSYS Mechanical Commands object.
+! N-mm-MPa model units. Apply to COPIES of the two nonlinear analyses.
+! Physical restraints and prescribed top UZ=-1.6 mm remain in Mechanical.
+! Do not use a second conflicting Analysis Settings substep specification.
+/SOLU
+NLGEOM,ON
+AUTOTS,ON
+NSUBST,200,20000,200
+NROPT,FULL
+NEQIT,50
+PRED,OFF
+LNSRCH,AUTO
+STABILIZE,OFF
+EQSLV,SPARSE
+OUTRES,ALL,ALL

@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aicira"
+version = "0.1.0"
+description = "Analytical reference and FEA-data screening for buckling-sensitive cylindrical shells"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+geometry = ["numpy>=1.24", "scipy>=1.10", "cadquery-ocp"]
+
+[project.scripts]
+aicira = "aicira.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
